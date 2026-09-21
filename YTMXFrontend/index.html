@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./GlobalStyle.css">
+    <title>YTMX</title>
+</head>
+<body>
+    <aside class="sidebar">
+        <h2>YTMX</h2>
+
+        <nav>
+            <a href="#" red-switch="home">Home</a>
+            <a href="#" red-switch="library">Library</a>
+            <a href="#" red-switch="search">Search</a>
+            <a href="#" red-switch="group-jam">Group Jam</a>
+        </nav>
+    </aside>
+
+    <main red-root></main>
+
+    <div class="playbar">
+        <div class="track">
+            <div class="album-art"></div>
+
+            <div class="track-info">
+                <strong id="track-title">Nothing Playing</strong>
+                <span id="track-artist">YTMX</span>
+            </div>
+        </div>
+
+        <div class="player-controls">
+            <button id="previous"><<</button>
+            <button id="play">></button>
+            <button id="next">>></button>
+        </div>
+
+        <div class="progress">
+            <span id="current-time">0:00</span>
+            <input id="progress-bar" type="range" min="0" max="100" value="0">
+            <span id="duration">0:00</span>
+        </div>
+
+        <div class="volume">
+            <))
+            <input type="range" min="0" max="100" value="75">
+        </div>
+    </div>
+
+
+    <script type="module" src="./JavaScript/app.js"></script>
+</body>
+</html>
