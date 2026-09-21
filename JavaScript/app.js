@@ -2,7 +2,16 @@ import red from "../reduction/reduction.js"
 
 red.views = {
     home: {
-        path: "./AppPages/home.html"
+        path: "./AppPages/Home.html"
+    },
+    library: {
+        path: "./AppPages/Library.html"
+    },
+    search: {
+        path: "./AppPages/Search.html"
+    },
+    "group-jam": {
+        path: "./AppPages/GroupJam.html"
     }
 };
 
