@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your YTMX account</title>
+</head>
+
+<body>
+    <main>
+        <h1>Create your YTMX account</h1>
+
+        <p>You're almost there.</p>
+
+        <form id="register-form">
+            <label for="name">Display name</label>
+            <input
+                id="name"
+                name="name"
+                type="text"
+                maxlength="32"
+                required
+                autocomplete="name"
+                placeholder="Your name"
+            >
+
+            <button type="submit">
+                Create account
+            </button>
+        </form>
+
+        <p id="error"></p>
+    </main>
+
+    <script>
+        const form = document.getElementById("register-form");
+        const error = document.getElementById("error");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            error.textContent = "";
+
+            const name = document.getElementById("name").value.trim();
+
+            if (!name) {
+                error.textContent = "Please enter a name.";
+                return;
+            }
+
+            try {
+                const response = await fetch("/api/auth/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        name
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    error.textContent = data.error ?? "Registration failed.";
+                    return;
+                }
+
+                window.location.href = "/";
+            } catch {
+                error.textContent = "Could not connect to YTMX.";
+            }
+        });
+    </script>
+</body>
+
+</html>

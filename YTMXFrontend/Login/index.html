@@ -1,21 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YTMX Login</title>
 </head>
-<body>
-    <div class="login">
-    <div class="login-box">
-        <h1>YTMX</h1>
-        <p>Sign in to continue</p>
 
-        <a class="google-login" href="/auth/google">
-            <img src="/assets/google.svg">
-            Continue with Google
-        </a>
-    </div>
-</div>
+<body>
+    <button id="google-login">
+        Continue with Google
+    </button>
+
+    <script>
+        document.getElementById("google-login").addEventListener("click", () => {
+            const width = 500;
+            const height = 650;
+
+            const left = (screen.width - width) / 2;
+            const top = (screen.height - height) / 2;
+
+            window.open(
+                "/auth/google",
+                "ytmx_google_login",
+                `width=${width},height=${height},left=${left},top=${top}`
+            );
+        });
+
+        window.addEventListener("message", (event) => {
+            if (event.origin !== window.location.origin) {
+                return;
+            }
+
+            if (event.data?.type === "ytmx-registration-required") {
+                window.location.href = "/Register";
+                return;
+            }
+
+            if (event.data?.type === "ytmx-login-success") {
+                window.location.href = "/";
+            }
+        });
+    </script>
 </body>
+
 </html>

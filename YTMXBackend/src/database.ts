@@ -19,7 +19,8 @@ db.exec(`
         email TEXT NOT NULL,
         name TEXT,
         avatar TEXT,
-        created_at INTEGER NOT NULL
+        created_at INTEGER NOT NULL,
+        updated_at INTEGER NOT NULL
     );
 
     CREATE TABLE IF NOT EXISTS sessions (
@@ -28,6 +29,16 @@ db.exec(`
         created_at INTEGER NOT NULL,
         expires_at INTEGER NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users(id)
+    );
+
+    CREATE TABLE IF NOT EXISTS registration_sessions (
+        id TEXT PRIMARY KEY,
+        google_id TEXT UNIQUE NOT NULL,
+        email TEXT NOT NULL,
+        name TEXT,
+        avatar TEXT,
+        created_at INTEGER NOT NULL,
+        expires_at INTEGER NOT NULL
     );
 `);
 
